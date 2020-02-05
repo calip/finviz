@@ -57,65 +57,67 @@ function finviz_render()
     }
     var processFinvizText = function ()
     {
-        var text = $('[itemprop="articleSection"]')[0].innerHTML;
-        var insert_macros = getFinvizAttributesFromText(text, 'insertstockquote');
-        if (insert_macros) {
-            for (var i = 0; i < insert_macros.length; i++) {
-                var attrs = insert_macros[i].attributes;
-                var macro = insert_macros[i].macro;
-                var advance = (attrs.advance === 'true' || attrs.advance !== undefined) ? 1 : 0;
-                var type_attr = (attrs.type !== undefined) ? attrs.type : 'candle';
+        var element = $('[itemprop="articleSection"]')[0];
+        if(element){
+            var text = element.innerHTML;
+            var insert_macros = getFinvizAttributesFromText(text, 'insertstockquote');
+            if (insert_macros) {
+                for (var i = 0; i < insert_macros.length; i++) {
+                    var attrs = insert_macros[i].attributes;
+                    var macro = insert_macros[i].macro;
+                    var advance = (attrs.advance === 'true') ? 1 : 0;
+                    var type_attr = (attrs.type !== undefined) ? attrs.type : 'candle';
 
-                var ty = {candle: 'c', line: 'l'};
-                var type = ty[type_attr];
+                    var ty = {candle: 'c', line: 'l'};
+                    var type = ty[type_attr];
 
-                var tm = {daily: 'd', weekly: 'w', monthly: 'm'};
-                var timeframe = 'd';
-                timeframe = attrs.timeframe !== undefined ? tm[attrs.timeframe] : 'd';
+                    var tm = {daily: 'd', weekly: 'w', monthly: 'm'};
+                    timeframe = attrs.timeframe !== undefined ? tm[attrs.timeframe] : 'd';
 
-                if (timeframe == 'm' || timeframe == 'w') {
-                    type = 'c';
-                    timeframe = 'd';
-                }
+                    if (attrs.advance === 'true') {
+                        type = 'c';
+                        timeframe = 'd';
+                    }
 
-                if (attrs.symbol != undefined)
-                {
-                    var img = '<img id="chart' + i + '" src="https://finviz.com/chart.ashx?t=' + attrs.symbol + '&ty=' + type + '&ta=' + advance + '&p=' + timeframe + '&s=l" alt="' + attrs.symbol + '" height="340" border="0">';
+                    if (attrs.symbol != undefined)
+                    {
+                        var img = '<img id="chart' + i + '" src="https://finviz.com/chart.ashx?t=' + attrs.symbol + '&ty=' + type + '&ta=' + advance + '&p=' + timeframe + '&s=l" alt="' + attrs.symbol + '" height="340" border="0">';
 
-                    text = text.replace(macro, img);
-                }
-            }
-        }
-        //hover
-        var hover_macros = getFinvizAttributesFromText(text, 'stockquotehover');
-
-        if (hover_macros) {
-            for (var i = 0; i < hover_macros.length; i++) {
-                var attrs = hover_macros[i].attributes;
-                var macro = hover_macros[i].macro;
-                var advance = (attrs.advance === 'true' || attrs.advance !== undefined) ? 1 : 0;
-                var type_attr = (attrs.type !== undefined) ? attrs.type : 'candle';
-
-                var ty = {candle: 'c', line: 'l'};
-                var type = ty[type_attr];
-
-                var tm = {daily: 'd', weekly: 'w', monthly: 'm'};
-                var timeframe = 'd';
-                timeframe = attrs.timeframe !== undefined ? tm[attrs.timeframe] : 'd';
-
-                if (timeframe == 'm' || timeframe == 'w') {
-                    type = 'c';
-                    timeframe = 'd';
-                }
-
-                if (attrs.symbol != undefined)
-                {
-                    var tag = '<a href="#" id="finviz-link" title="<iframe noresize=noresize scrolling=no height=340 frameborder=0 style=width:100vw;height:340; src=https://finviz.com/chart.ashx?t=' + attrs.symbol + '&ty=' + type + '&ta=' + advance + '&p=' + timeframe + '&s=l></iframe>" rel="finviz-tooltip" style="white-space: nowrap;">' + attrs.symbol + '</a>';
-                    text = text.replace(macro, tag);
+                        text = text.replace(macro, img);
+                    }
                 }
             }
+            //hover
+            var hover_macros = getFinvizAttributesFromText(text, 'stockquotehover');
+
+            if (hover_macros) {
+                for (var i = 0; i < hover_macros.length; i++) {
+                    var attrs = hover_macros[i].attributes;
+                    var macro = hover_macros[i].macro;
+                    var advance = (attrs.advance === 'true') ? 1 : 0;
+                    var type_attr = (attrs.type !== undefined) ? attrs.type : 'candle';
+
+                    var ty = {candle: 'c', line: 'l'};
+                    var type = ty[type_attr];
+
+                    var tm = {daily: 'd', weekly: 'w', monthly: 'm'};
+                    timeframe = attrs.timeframe !== undefined ? tm[attrs.timeframe] : 'd';
+
+                    if (attrs.advance === 'true') {
+                        type = 'c';
+                        timeframe = 'd';
+                    }
+
+                    if (attrs.symbol != undefined)
+                    {
+                        var tag = '<a href="#" id="finviz-link" title="<iframe noresize=noresize scrolling=no height=340 frameborder=0 style=width:100vw;height:340; src=https://finviz.com/chart.ashx?t=' + attrs.symbol + '&ty=' + type + '&ta=' + advance + '&p=' + timeframe + '&s=l></iframe>" rel="finviz-tooltip" style="white-space: nowrap;">' + attrs.symbol + '</a>';
+                        text = text.replace(macro, tag);
+                    }
+                }
+            }
+            element.innerHTML = text;
         }
-        $('[itemprop="articleSection"]')[0].innerHTML = text;
+        
     }
     processFinvizText();
 }
