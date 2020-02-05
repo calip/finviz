@@ -2,7 +2,7 @@
 
 This macro is useful to embed a finviz chart in the middle of content text
 
-More information about Trading View [Click Here](https://finviz.com/).
+More information about Finviz[Click Here](https://finviz.com/).
 
 ## Usage
 ## Syntax
