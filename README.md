@@ -6,11 +6,9 @@ More information about Finviz[Click Here](https://finviz.com/).
 
 ## Usage
 ## Syntax
-- Default: {insertstockquote symbol="AAPL"}
+- Default: [[AAPL]]
 
-- Hover: {stockquotehover symbol="AAPL"}
-
-- Advance: {insertstockquote symbol="AAPL" type="candle" advance="false" timeframe="daily"}
+- Advance: [[AAPL title="Apple" type="candle" advance="false" timeframe="daily" hover="true"]]
 
 ## Available Type value:
 - candle

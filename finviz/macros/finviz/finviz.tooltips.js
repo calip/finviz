@@ -18,7 +18,7 @@ $(document).on('mouseenter', '[rel="finviz-tooltip"]', function () {
     var tip = target.attr('title');
     var tooltip = $('<div id="finviz-tooltip"></div>');
 
-    if (!tip || tip == '')
+    if (!tip || tip === '')
         return false;
 
     target.removeAttr('title');
@@ -72,7 +72,7 @@ $(document).on('mouseenter', '[rel="finviz-tooltip"]', function () {
 
                 target.attr('title', tip);
             }
-        }
+        };
     };
 
     $(document).on('mouseleave', '#finviz-link', remove_tooltip);

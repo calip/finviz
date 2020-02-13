@@ -21,17 +21,16 @@ if (!defined('SCHLIX_VERSION'))
 
 <h3><?= ___('Usage') ?></h3>
 <h4><?= ___('Syntax') ?></h4>
-<p><?= ___('Default') ?>: <code style="font-size:large">{insertstockquote <strong>symbol</strong>=<em>&quot;AAPL&quot;</em>}</code></p>
-<p><?= ___('Hover') ?>: <code style="font-size:large">{stockquotehover <strong>symbol</strong>=<em>&quot;AAPL&quot;</em>}</code></p>
-<p><?= ___('Advance') ?>: <code style="font-size:large">{insertstockquote <strong>symbol</strong>=<em>&quot;AAPL&quot;</em> <strong>type</strong>=<em>&quot;candle&quot;</em> <strong>advance</strong>=<em>&quot;false&quot;</em> <strong>timeframe</strong>=<em>&quot;daily&quot;</em>}</code></p>
+<p><?= ___('Default') ?>: <code style="font-size:large">[[<strong>AAPL</strong>]]</code></p>
+<p><?= ___('Advance') ?>: <code style="font-size:large">[[<strong>AAPL</strong> <strong>title</strong>=<em>&quot;Apple&quot;</em> <strong>type</strong>=<em>&quot;candle&quot;</em> <strong>advance</strong>=<em>&quot;false&quot;</em> <strong>timeframe</strong>=<em>&quot;daily&quot;</em> <strong>hover</strong>=<em>&quot;true&quot;</em>]]</code></p>
 <h4><?= ___('Available Type value:') ?></h4>
 <ul>
-    <li>candle</li>
-    <li>line</li>
+    <li><?= ___('candle') ?></li>
+    <li><?= ___('line') ?></li>
 </ul>
 <h4><?= ___('Available Timeframe value:') ?></h4>
 <ul>
-    <li>daily</li>
-    <li>weekly</li>
-    <li>monthly</li>
+    <li><?= ___('daily') ?></li>
+    <li><?= ___('weekly') ?></li>
+    <li><?= ___('monthly') ?></li>
 </ul>
